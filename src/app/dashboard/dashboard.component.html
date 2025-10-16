@@ -64,14 +64,26 @@
         </div>
 
         <div class="route-history">
-          <h3>Route History</h3>
-          <div class="route-item" *ngFor="let order of orders">
-            <div>
-              <p class="order-id">#{{ order.id }} {{ order.type }}</p>
-              <p>{{ order.start }}</p>
-              <p>{{ order.end }}</p>
+          <div class="trip-list">
+            <h2>Last Trip</h2>
+
+            <div class="trip-row" *ngFor="let order of orders" (click)="selectOrder(order)" [class.held]="selectedOrder === order">
+              <div class="time-col">
+                <div class="time"><i class="icon-clock"></i> 20:23</div>
+                <div class="time"><i class="icon-pin"></i> 20:42</div>
+              </div>
+              <div class="address-col">
+                <div>{{ order.start }}</div>
+                <div>{{ order.end }}</div>
+              </div>
+              <div class="meta-col">
+                <div><i class="icon-car"></i> {{ order.type }}</div>
+                <div><i class="icon-distance"></i> 4.2 km</div>
+                <span class="tag" [ngClass]="order.status === 'In Transit' ? 'untagged' : (order.status === 'Completed' ? 'business' : 'private')">{{ order.status }}</span>
+              </div>
             </div>
-            <span class="badge" [class]="'status-' + order.status.toLowerCase().replace(' ', '-')">{{ order.status }}</span>
+
+            <a href="#" class="show-all">Show All Trips →</a>
           </div>
         </div>
       </section>
@@ -102,8 +114,8 @@
   <div class="driver-card">
     <img src="assets/driver.png" alt="Driver" class="driver-img" />
     <div class="driver-info">
-      <p class="name">David Duffy</p>
-      <p class="role">Driver</p>
+      <p class="name">{{ selectedOrder ? ('Driver for #' + selectedOrder.id) : 'David Duffy' }}</p>
+      <p class="role">{{ selectedOrder ? selectedOrder.type : 'Driver' }}</p>
     </div>
     <div class="driver-actions">
       <button class="btn call">📞 Call</button>

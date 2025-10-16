@@ -135,7 +135,7 @@
   background: var(--white);
   border-radius: 16px;
   padding: 1rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 .vehicle-card img {
@@ -146,8 +146,58 @@
   background: var(--white);
   border-radius: 16px;
   padding: 1rem;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
+
+.route-history .trip-list {
+  font-family: Arial, sans-serif;
+  padding: 0; /* outer padding handled by route-history */
+}
+
+.route-history .trip-row {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.route-history .time-col .time {
+  margin: 5px 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.route-history .address-col {
+  flex: 1;
+  margin-left: 15px;
+}
+
+.route-history .meta-col {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9em;
+}
+
+.route-history .tag {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.route-history .tag.untagged { background: #ccc; color: #333; }
+.route-history .tag.business { background: #ffa500; color: white; }
+.route-history .tag.private { background: #6c757d; color: white; }
+
+.route-history .show-all {
+  display: inline-block;
+  margin-top: 12px;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: bold;
+}
+.route-history .show-all:hover { text-decoration: underline; }
 
 .route-item {
   display: flex;
@@ -164,7 +214,7 @@
   flex-direction: column;
   background: var(--white);
   border-radius: 16px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   padding: 1rem;
 }
 
@@ -190,10 +240,10 @@ agm-map {
   background: var(--white);
   border-radius: 16px;
   box-shadow: var(--shadow);
-  padding: 1rem;
+  padding: 0rem;
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
 }
 
 /* Sidebar footer - stick logout to bottom */
@@ -214,6 +264,7 @@ agm-map {
   cursor: pointer;
   font-weight: 500;
 }
+
 
 .logout-btn:hover {
   background: rgba(0,0,0,0.04);

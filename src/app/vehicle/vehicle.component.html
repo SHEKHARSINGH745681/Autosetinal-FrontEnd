@@ -1,0 +1,59 @@
+<div class="vehicle-container">
+  <h2>Vehicle Management</h2>
+
+  <!-- Add Vehicle Form -->
+  <form class="vehicle-form" (ngSubmit)="addVehicle()" enctype="multipart/form-data">
+    <input type="text" placeholder="Vehicle Name" [(ngModel)]="newVehicle.name" name="name" required />
+    <input type="text" placeholder="Vehicle Type" [(ngModel)]="newVehicle.type" name="type" required />
+    <input type="text" placeholder="Registration Number" [(ngModel)]="newVehicle.registration" name="registration" required />
+    <input type="text" placeholder="Owner Name" [(ngModel)]="newVehicle.owner" name="owner" required />
+
+    <!-- File Upload -->
+    <div class="file-upload">
+      <label for="vehicleImage">Vehicle Image</label>
+      <input type="file" id="vehicleImage" (change)="onImageSelected($event)" accept="image/*" />
+    </div>
+
+    <!-- Image Preview -->
+    <div class="preview" *ngIf="previewImage">
+      <img [src]="previewImage" alt="Preview" />
+    </div>
+
+    <button type="submit" class="btn-add">Add Vehicle</button>
+  </form>
+
+  <!-- Vehicle List -->
+  <div class="vehicle-list">
+    <h3>All Vehicles</h3>
+    <div *ngIf="vehicles.length === 0" class="no-data">No vehicles available.</div>
+
+    <table *ngIf="vehicles.length > 0">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Image</th>
+          <th>Vehicle Name</th>
+          <th>Type</th>
+          <th>Registration No</th>
+          <th>Owner</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vehicle of vehicles; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <img *ngIf="vehicle.image" [src]="vehicle.image" alt="Vehicle" class="vehicle-thumb" />
+          </td>
+          <td>{{ vehicle.name }}</td>
+          <td>{{ vehicle.type }}</td>
+          <td>{{ vehicle.registration }}</td>
+          <td>{{ vehicle.owner }}</td>
+          <td>
+            <button class="btn-delete" (click)="deleteVehicle(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
