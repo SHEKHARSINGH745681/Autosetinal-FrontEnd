@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 
 interface Vehicle {
   name: string;
@@ -14,6 +15,7 @@ interface Vehicle {
   styleUrls: ['./vehicle.component.css']
 })
 export class VehicleComponent {
+  constructor(private location: Location) {}
   vehicles: Vehicle[] = [];
 
   // ✅ include image property in initialization
@@ -58,5 +60,9 @@ export class VehicleComponent {
     if (confirm('Are you sure you want to delete this vehicle?')) {
       this.vehicles.splice(index, 1);
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

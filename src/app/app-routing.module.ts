@@ -5,14 +5,15 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
 import { DocumentComponent } from './document/document.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'vehicles', component: VehicleComponent },
-  { path: 'documents', component: DocumentComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'vehicles', component: VehicleComponent, canActivate: [AuthGuard] },
+  { path: 'documents', component: DocumentComponent, canActivate: [AuthGuard] },
   
   { path: '**', redirectTo: '/login' }
 ];
