@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,9 @@ export class SignupComponent {
   };
 
   isLoading = false;
+  showCompletion = false;
+
+  @ViewChild('completionPlayer', { static: false }) completionPlayer?: ElementRef;
   
   // API Configuration - Replace with your hosted API URL
   private apiUrl = 'https://your-hosted-api.com'; // Replace with your actual hosted API URL
@@ -90,8 +93,31 @@ export class SignupComponent {
               localStorage.setItem('user_data', JSON.stringify(response.user || response.data));
             }
             
-            // Redirect to login page or dashboard
-            this.router.navigate(['/login']);
+            // Show completion animation overlay, then redirect to login when it finishes
+            this.showCompletion = true;
+            // small timeout to ensure the player is rendered and available
+            setTimeout(() => {
+              try {
+                const player = this.completionPlayer && (this.completionPlayer as any).nativeElement;
+                if (player) {
+                  // listen for the animationcomplete event (lottie-player web component)
+                  const onComplete = () => {
+                    player.removeEventListener('complete', onComplete);
+                    this.showCompletion = false;
+                    this.router.navigate(['/login']);
+                  };
+                  // Some lottie-player instances use 'complete' or 'animationcomplete'
+                  player.addEventListener('complete', onComplete);
+                  player.addEventListener('animationcomplete', onComplete);
+                } else {
+                  // fallback: redirect after 1.2s
+                  setTimeout(() => this.router.navigate(['/login']), 1200);
+                }
+              } catch (e) {
+                // fallback redirect
+                setTimeout(() => this.router.navigate(['/login']), 1200);
+              }
+            }, 80);
           } else {
             alert('Registration completed, but there might be an issue. Please try logging in.');
           }
@@ -132,7 +158,32 @@ export class SignupComponent {
               errorMessage = 'Server error. Please try again later.';
               break;
             case 0:
-              errorMessage = 'Network error. Please check your internet connection.';
+              // Network error: offer demo/offline flow so local testing can continue
+              const proceedOffline = confirm('Network error. No connection to the registration API. Do you want to continue in demo mode and complete signup locally?');
+              if (proceedOffline) {
+                // simulate success flow: play completion animation then redirect
+                this.showCompletion = true;
+                setTimeout(() => {
+                  try {
+                    const player = this.completionPlayer && (this.completionPlayer as any).nativeElement;
+                    if (player) {
+                      const onComplete = () => {
+                        player.removeEventListener('complete', onComplete);
+                        this.showCompletion = false;
+                        this.router.navigate(['/login']);
+                      };
+                      player.addEventListener('complete', onComplete);
+                      player.addEventListener('animationcomplete', onComplete);
+                    } else {
+                      setTimeout(() => this.router.navigate(['/login']), 1200);
+                    }
+                  } catch (e) {
+                    setTimeout(() => this.router.navigate(['/login']), 1200);
+                  }
+                }, 80);
+              } else {
+                errorMessage = 'Network error. Please check your internet connection.';
+              }
               break;
           }
           

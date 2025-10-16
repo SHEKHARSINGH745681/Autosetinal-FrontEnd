@@ -62,5 +62,9 @@
         Already have an account?
         <a routerLink="/login">Sign In</a>
       </div>
+        <!-- Completion overlay (shown after successful signup) -->
+        <div *ngIf="showCompletion" class="completion-overlay">
+          <lottie-player #completionPlayer src="assets/Completedsucessfully.json" background="transparent" speed="1" style="width:320px; height:320px;" autoplay></lottie-player>
+        </div>
   </div>
 </div>

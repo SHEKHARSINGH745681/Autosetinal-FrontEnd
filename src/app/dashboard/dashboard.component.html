@@ -1,13 +1,15 @@
 <div class="dashboard-container">
   <!-- Sidebar -->
   <aside class="sidebar">
-    <div class="logo">TMC</div>
+    <div class="logo">
+      <img src="assets/logo1.png" alt="AutoSentinal" class="logo-img" />
+    </div>
     <nav class="nav">
       <a routerLink="/dashboard" class="nav-item active">
         <i class="fas fa-home"></i> Dashboard
       </a>
       <a routerLink="/orders" class="nav-item">
-        <i class="fas fa-tasks"></i> Active Orders
+        <i class="fas fa-tasks"></i> Map Overview
       </a>
       <a routerLink="/vehicles" class="nav-item">
         <i class="fas fa-truck"></i> Vehicles
@@ -21,33 +23,38 @@
       <a routerLink="/notifications" class="nav-item">
         <i class="fas fa-bell"></i> Notifications
       </a>
+      <a routerLink="/reports" class="nav-item">
+        <i class="fas fa-file-alt"></i> Reports
+      </a>
     </nav>
   </aside>
 
   <!-- Main Content -->
   <main class="main-content">
     <header class="main-header">
-      <h2>Food Delivery</h2>
+      <h2>UP14AK8154</h2>
       <span class="status in-transit">In Transit</span>
     </header>
 
     <div class="content">
       <!-- Left panel -->
       <section class="details">
-        <div class="tabs">
+        <!-- <div class="tabs">
           <span class="tab active">Order details</span>
           <span class="tab">Driver</span>
           <span class="tab">Vehicle</span>
           <span class="tab">Customer</span>
-        </div>
+        </div> -->
 
         <div class="vehicle-card">
           <img src="assets/truck iage.webp" alt="Vehicle" />
           <div class="vehicle-info">
-            <p><b>Volkswagen Transporter 6.1</b></p>
-            <p>Payload: <strong>3,768 lbs</strong></p>
-            <p>Load Volume: <strong>367,190 in³</strong></p>
-            <p>Number: <strong>C35550E</strong></p>
+            <p><b>TATA Sigma 2.0</b></p>
+            <p>Payload: <strong>3,768 kgs</strong></p>
+            <p>Load Volume: <strong>3,500 Kgs</strong></p>
+            <p>Top Speed: <strong>60 km/h</strong></p>
+            <p>Seating Capacity: <strong>4</strong></p>
+            <p>Registration Exp: <strong>01/01/2030</strong></p>
           </div>
         </div>
 
