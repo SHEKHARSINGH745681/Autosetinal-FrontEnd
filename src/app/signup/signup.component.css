@@ -16,7 +16,8 @@ body, html {
 
 .login-container {
   display: flex;
-  justify-content: center;
+  /* align items to the left so illustration is on the left and form sits to the right */
+  justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
@@ -26,21 +27,17 @@ body, html {
 
 /* Illustration area is defined below; commented examples/animations removed for clarity */
 
-/* Right signup area */
-.login-card {
-  display: flex;
-  justify-content: flex-end; /* keep form on the right */
-  align-items: center;
-  width: 100%;
-}
+/* .login-card removed - the form is now a direct child of .login-container */
 
 /* Illustration area on the left */
 .login-illustration {
-  flex: 1 1 60%;
+  /* make the illustration take remaining space on the left */
+  flex: 1 1 auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* keep image aligned to the left of the illustration area */
   min-height: 420px;
+  padding-left: 20px; /* small left padding so image doesn't touch the edge */
 }
 
 .login-illustration img {
@@ -48,6 +45,7 @@ body, html {
   max-width: 560px;
   border-radius: 12px;
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+  object-fit: contain; /* ensure the image scales nicely */
 }
 
 .login-form-container {
@@ -59,16 +57,16 @@ body, html {
   padding: 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* place the form to the right side of the illustration by default */
+  /* make the form a fixed-width right column */
+  flex: 0 0 420px;
+  margin-left: auto;
+  align-self: center;
 }
 
-/* Helper to allow nudging the form position using CSS variables */
-.login-form-container.positioned {
-  position: relative;
-  left: var(--form-left, 0);
-  right: var(--form-right, 12px);
-  top: var(--form-top, 0);
-  bottom: var(--form-bottom, 0);
-}
+/* Helper to allow nudging the form position using CSS variables
+   Note: the detailed .positioned rule is defined later (keeps helpers together).
+*/
 
 .login-form-container h2 {
   font-size: 28px;
@@ -316,6 +314,9 @@ body, html {
   .login-form-container {
     max-width: 100%;
     padding: 30px;
+    /* reset right-alignment on smaller screens so the form is centered */
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .login-form-container h2 {
