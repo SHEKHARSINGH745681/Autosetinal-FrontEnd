@@ -25,6 +25,14 @@
   gap: 2rem;
 }
 
+/* make the nav take available space so footer sticks to bottom */
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+}
+
 .logo {
   font-size: 22px;
   font-weight: bold;
@@ -186,6 +194,29 @@ agm-map {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+/* Sidebar footer - stick logout to bottom */
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.logout-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background: rgba(0,0,0,0.04);
 }
 
 .driver-img {
