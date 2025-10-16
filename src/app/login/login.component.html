@@ -16,7 +16,7 @@
         To keep connected with us, please login with your email and password.
       </p>
 
-      <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <form *ngIf="!showOtp" (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <div class="form-group">
           <label for="email">Email Address</label>
           <input
@@ -83,6 +83,32 @@
           </button>
         </div>
       </form>
+
+      <!-- OTP verification view -->
+      <div *ngIf="showOtp" class="otp-container">
+        <h3>Enter OTP</h3>
+        <p>An OTP has been sent to your email: <strong>{{ loginData.email }}</strong></p>
+
+        <div class="form-group">
+          <label for="otp">One-Time Password (OTP)</label>
+          <input id="otp" name="otp" type="text" maxlength="6" [(ngModel)]="otpInput" />
+        </div>
+
+        <div class="otp-actions">
+          <button type="button" class="login-btn" (click)="verifyOtp()" [disabled]="isLoading">
+            {{ isLoading ? 'Verifying...' : 'Verify OTP' }}
+          </button>
+          <button type="button" class="secondary" (click)="resendOtp()" [disabled]="isLoading">Resend OTP</button>
+        </div>
+
+        <div class="error-message" *ngIf="otpError">
+          <small>{{ otpError }}</small>
+        </div>
+
+        <div class="cancel-otp">
+          <a href="#" (click)="resetOtpFlow(); $event.preventDefault()">Cancel and login again</a>
+        </div>
+      </div>
 
       <div class="signup-text">
         Don't have an account? <a href="#" (click)="navigateToSignup(); $event.preventDefault()">Create Account</a>

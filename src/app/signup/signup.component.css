@@ -20,43 +20,34 @@ body, html {
   align-items: center;
   min-height: 100vh;
   padding: 20px;
+  /* create a two-column layout: illustration left, form right */
+  gap: 24px;
 }
 
-/* Left illustration */
-/* .login-illustration {
-  flex: 1.2;
-  background: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-} */
-/* 
-.login-illustration img {
-  width: 75%;
-  max-width: 580px;
-  animation: imageGrowIn 2.5s ease-out;
-} */
-
-/* @keyframes imageGrowIn {
-  0% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-} */
+/* Illustration area is defined below; commented examples/animations removed for clarity */
 
 /* Right signup area */
 .login-card {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* keep form on the right */
   align-items: center;
+  width: 100%;
+}
+
+/* Illustration area on the left */
+.login-illustration {
+  flex: 1 1 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 420px;
+}
+
+.login-illustration img {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
 
 .login-form-container {
@@ -68,6 +59,15 @@ body, html {
   padding: 40px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Helper to allow nudging the form position using CSS variables */
+.login-form-container.positioned {
+  position: relative;
+  left: var(--form-left, 0);
+  right: var(--form-right, 12px);
+  top: var(--form-top, 0);
+  bottom: var(--form-bottom, 0);
 }
 
 .login-form-container h2 {
@@ -296,6 +296,21 @@ body, html {
 @media (max-width: 900px) {
   .login-container {
     padding: 15px;
+  }
+
+  /* stack layout on medium screens */
+  .login-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .login-illustration {
+    order: 1;
+    margin-bottom: 30px;
+  }
+
+  .login-card {
+    justify-content: center;
   }
 
   .login-form-container {
