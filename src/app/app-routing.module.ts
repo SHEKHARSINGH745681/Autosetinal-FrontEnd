@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VehicleComponent } from './vehicle/vehicle.component';
+import { DocumentComponent } from './document/document.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'vehicles', component: VehicleComponent },
+  { path: 'documents', component: DocumentComponent },
   
   { path: '**', redirectTo: '/login' }
 ];

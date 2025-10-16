@@ -46,11 +46,9 @@ export class DashboardComponent implements OnInit {
       }
     }
 
-    // Check if user is authenticated
-    const token = localStorage.getItem('auth_token');
-    if (!token) {
-      this.router.navigate(['/login']);
-    }
+    // NOTE: authentication should be handled by a route guard (AuthGuard) instead of
+    // redirecting from inside the component. For now we don't redirect here so
+    // routes like /documents behave like /vehicles.
   }
 
   logout(): void {

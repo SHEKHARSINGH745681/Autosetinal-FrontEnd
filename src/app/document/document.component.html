@@ -1,1 +1,62 @@
-<p>document works!</p>
+<div class="document-container">
+  <h2>Document Management</h2>
+
+  <!-- Document Form -->
+  <div class="document-form">
+    <input
+      type="text"
+      placeholder="Document Name"
+      [(ngModel)]="newDocumentName"
+      required
+    />
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="saveDocument()" class="btn-save">
+      {{ editIndex !== null ? 'Update Document' : 'Add Document' }}
+    </button>
+
+    <!-- Preview -->
+    <div class="preview" *ngIf="previewUrl">
+      <p>Preview:</p>
+      <img *ngIf="selectedFile && selectedFile.type.startsWith('image/')" [src]="previewUrl" alt="Preview" class="thumb" />
+      <iframe *ngIf="selectedFile && selectedFile.type === 'application/pdf'" [src]="previewUrl" frameborder="0" class="pdf-frame"></iframe>
+      <span *ngIf="selectedFile && !selectedFile.type.startsWith('image/') && selectedFile.type !== 'application/pdf'">
+        {{ selectedFile.name }}
+      </span>
+    </div>
+  </div>
+
+  <!-- Document List -->
+  <div class="document-list" *ngIf="documents.length > 0">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Preview</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of documents; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ doc.name }}</td>
+          <td>
+            <img *ngIf="doc.file && doc.file.type.startsWith('image/')" [src]="doc.url" alt="Preview" class="thumb" />
+            <iframe *ngIf="doc.file && doc.file.type === 'application/pdf'" [src]="doc.url" frameborder="0" class="pdf-frame"></iframe>
+            <span *ngIf="doc.file && !doc.file.type.startsWith('image/') && doc.file.type !== 'application/pdf'">
+              {{ doc.file.name }}
+            </span>
+          </td>
+          <td>
+            <button class="btn-edit" (click)="editDocument(i)">Edit</button>
+            <button class="btn-delete" (click)="deleteDocument(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="no-data" *ngIf="documents.length === 0">
+    No documents available.
+  </div>
+</div>

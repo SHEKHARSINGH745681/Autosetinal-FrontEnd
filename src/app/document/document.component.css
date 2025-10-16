@@ -1,0 +1,136 @@
+.document-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px;
+  background: #f9fafc;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  font-family: "Segoe UI", sans-serif;
+}
+
+h2 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #1a1a1a;
+}
+
+.document-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.document-form input[type="text"] {
+  flex: 2;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+}
+
+.document-form input[type="file"] {
+  flex: 2;
+}
+
+.btn-save {
+  flex: 1;
+  padding: 12px;
+  background: #0078d7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-save:hover {
+  background: #005fa3;
+}
+
+.preview {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.preview img {
+  width: 120px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.preview iframe {
+  width: 200px;
+  height: 150px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.document-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.document-list th,
+.document-list td {
+  padding: 12px;
+  border-bottom: 1px solid #e6e6e6;
+  text-align: left;
+}
+
+.document-list th {
+  background: #f1f5f9;
+  font-weight: 600;
+}
+
+.thumb {
+  width: 80px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.pdf-frame {
+  width: 120px;
+  height: 100px;
+}
+
+.btn-edit,
+.btn-delete {
+  padding: 7px 12px;
+  border: none;
+  border-radius: 6px;
+  margin-right: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-edit {
+  background-color: #ffa500;
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #e69500;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #c0392b;
+}
+
+.no-data {
+  text-align: center;
+  padding: 20px;
+  color: #777;
+  font-style: italic;
+}

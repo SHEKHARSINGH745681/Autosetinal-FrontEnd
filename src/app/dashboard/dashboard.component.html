@@ -67,7 +67,7 @@
           <div class="trip-list">
             <h2>Last Trip</h2>
 
-            <div class="trip-row" *ngFor="let order of orders" (click)="selectOrder(order)" [class.held]="selectedOrder === order">
+            <div class="trip-row" *ngFor="let order of orders">
               <div class="time-col">
                 <div class="time"><i class="icon-clock"></i> 20:23</div>
                 <div class="time"><i class="icon-pin"></i> 20:42</div>
@@ -114,8 +114,8 @@
   <div class="driver-card">
     <img src="assets/driver.png" alt="Driver" class="driver-img" />
     <div class="driver-info">
-      <p class="name">{{ selectedOrder ? ('Driver for #' + selectedOrder.id) : 'David Duffy' }}</p>
-      <p class="role">{{ selectedOrder ? selectedOrder.type : 'Driver' }}</p>
+      <p class="name">David Duffy</p>
+      <p class="role">Driver</p>
     </div>
     <div class="driver-actions">
       <button class="btn call">📞 Call</button>
