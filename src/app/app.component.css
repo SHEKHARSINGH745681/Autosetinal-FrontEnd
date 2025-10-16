@@ -1,0 +1,6 @@
+/* App component now just acts as a container */
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+}
